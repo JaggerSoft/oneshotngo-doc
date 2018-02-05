@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:collaboration id="Collaboration_1e3m0fv">
+    <bpmn:participant id="Participant_02cza95" name="Cerrar sesión" processRef="Process_1" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1" isExecutable="false">
+    <bpmn:laneSet>
+      <bpmn:lane id="Lane_1vdon8f" name="Usuario registrado">
+        <bpmn:flowNodeRef>EndEvent_0h45c5f</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IntermediateThrowEvent_1qcu69a</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0u84qco" name="CampusFinder">
+        <bpmn:flowNodeRef>Task_1fjibu8</bpmn:flowNodeRef>
+        <bpmn:childLaneSet xsi:type="bpmn:tLaneSet" />
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:sequenceFlow id="SequenceFlow_0hitws3" sourceRef="StartEvent_1" targetRef="Task_1fjibu8" />
+    <bpmn:sequenceFlow id="SequenceFlow_0vxpwk7" sourceRef="Task_1fjibu8" targetRef="IntermediateThrowEvent_1qcu69a" />
+    <bpmn:endEvent id="EndEvent_0h45c5f">
+      <bpmn:incoming>SequenceFlow_1lnx8ef</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1lnx8ef" sourceRef="IntermediateThrowEvent_1qcu69a" targetRef="EndEvent_0h45c5f" />
+    <bpmn:startEvent id="StartEvent_1" name="Petición de cierre de sesión">
+      <bpmn:outgoing>SequenceFlow_0hitws3</bpmn:outgoing>
+      <bpmn:messageEventDefinition />
+    </bpmn:startEvent>
+    <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_1qcu69a" name="Sesión [cerrada]">
+      <bpmn:incoming>SequenceFlow_0vxpwk7</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1lnx8ef</bpmn:outgoing>
+      <bpmn:messageEventDefinition />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:task id="Task_1fjibu8" name="Cerrar sesión">
+      <bpmn:incoming>SequenceFlow_0hitws3</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0vxpwk7</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0f4hsj4">
+        <bpmn:targetRef>DataObjectReference_1645rbm</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:dataObjectReference id="DataObjectReference_1645rbm" name="Sesión [abierta]" dataObjectRef="DataObject_07557p9" />
+    <bpmn:dataObject id="DataObject_07557p9" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1e3m0fv">
+      <bpmndi:BPMNShape id="Participant_02cza95_di" bpmnElement="Participant_02cza95">
+        <dc:Bounds x="477" y="165" width="541" height="324" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1vdon8f_di" bpmnElement="Lane_1vdon8f">
+        <dc:Bounds x="507" y="165" width="511" height="159" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0u84qco_di" bpmnElement="Lane_0u84qco">
+        <dc:Bounds x="507" y="324" width="511" height="165" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_0e0mcbv_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="562" y="239" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="537" y="195" width="85" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1fjibu8_di" bpmnElement="Task_1fjibu8">
+        <dc:Bounds x="672" y="368" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0hitws3_di" bpmnElement="SequenceFlow_0hitws3">
+        <di:waypoint xsi:type="dc:Point" x="598" y="257" />
+        <di:waypoint xsi:type="dc:Point" x="722" y="257" />
+        <di:waypoint xsi:type="dc:Point" x="722" y="368" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="660" y="236" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0vxpwk7_di" bpmnElement="SequenceFlow_0vxpwk7">
+        <di:waypoint xsi:type="dc:Point" x="745" y="368" />
+        <di:waypoint xsi:type="dc:Point" x="745" y="245" />
+        <di:waypoint xsi:type="dc:Point" x="790" y="245" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="760" y="300.5" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="DataObjectReference_1645rbm_di" bpmnElement="DataObjectReference_1645rbm">
+        <dc:Bounds x="580" y="383" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="560" y="435" width="77" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0f4hsj4_di" bpmnElement="DataOutputAssociation_0f4hsj4">
+        <di:waypoint xsi:type="dc:Point" x="672" y="409" />
+        <di:waypoint xsi:type="dc:Point" x="616" y="411" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0h45c5f_di" bpmnElement="EndEvent_0h45c5f">
+        <dc:Bounds x="957" y="227" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="975" y="267" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1lnx8ef_di" bpmnElement="SequenceFlow_1lnx8ef">
+        <di:waypoint xsi:type="dc:Point" x="826" y="245" />
+        <di:waypoint xsi:type="dc:Point" x="957" y="245" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="891.5" y="224" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateThrowEvent_00k0gw7_di" bpmnElement="IntermediateThrowEvent_1qcu69a">
+        <dc:Bounds x="790" y="227" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="785" y="270" width="81" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
